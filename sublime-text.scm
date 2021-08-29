@@ -29,20 +29,22 @@
        "libX11"
        "libz"
        "glu"
+       "out"
        "glib"
        "cairo"
        "gtk"
        "pango"))
-  ("libssl.so.1.1" ("gcc:lib" "libz" "libc"))
-  ("libcrypto.so.1.1" ("gcc:lib" "libz" "libc"))
-  ("crash_reporter" ("gcc:lib" "libc"))
-  ("plugin_host-3.3" ("gcc:lib" "libc"))
-  ("plugin_host-3.8" ("gcc:lib" "libc")))
+  ("libssl.so.1.1" ("gcc:lib" "libz" "libc" "out"))
+  ("libcrypto.so.1.1" ("gcc:lib" "libz" "libc" "out"))
+  ("crash_reporter" ("gcc:lib" "libc" "out"))
+  ("plugin_host-3.3" ("gcc:lib" "libc" "out"))
+  ("plugin_host-3.8" ("gcc:lib" "libc" "out")))
       #:install-plan
       '(("." "usr/share/sublime-text/" #:exclude ("libssl.so.1.1" "libcrypto.so.1.1"))
    ("libcrypto.so.1.1" "lib/")
    ("libssl.so.1.1" "lib/"))
       #:strip-binaries? #f
+      #:validate-runpath? #f
       #:phases
       (modify-phases %standard-phases
          (add-after 'install 'install-symlink
