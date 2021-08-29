@@ -33,15 +33,15 @@
        "cairo"
        "gtk"
        "pango"))
-  ("libssl.so.1.1" ("gcc:lib" "libz"))
-  ("libcrypto.so.1.1" ("gcc:lib" "libz"))
+  ("libssl.so.1.1" ("gcc:lib" "libz" "libc"))
+  ("libcrypto.so.1.1" ("gcc:lib" "libz" "libc"))
   ("crash_reporter" ("gcc:lib" "libc"))
   ("plugin_host-3.3" ("gcc:lib" "libc"))
   ("plugin_host-3.8" ("gcc:lib" "libc")))
       #:install-plan
       '(("." "usr/share/sublime-text/" #:exclude ("libssl.so.1.1" "libcrypto.so.1.1"))
-   ("libssl.so.1.1" "usr/lib/")
-   ("libcrypto.so.1.1" "usr/lib/"))
+   ("libcrypto.so.1.1" "lib/")
+   ("libssl.so.1.1" "lib/"))
       #:strip-binaries? #f
       #:phases
       (modify-phases %standard-phases
@@ -65,7 +65,6 @@
   (synopsis "Install Sublime Text 4.")
   (description "Install the superfast text editor.")
   (home-page "https://sublimetext.com")
-  (license (nonfree "https://example.com"))))
+  (license (nonfree "https://www.sublimetext.com/eula"))))
 
 sublime-text
-
